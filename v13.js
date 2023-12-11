@@ -62,10 +62,10 @@ function createStringPtr(message) {
 const ArxanPatcher = {
   init() {
     Armceptor.jumpout(this.base.add(0x5b708),  this.base.add(0x5c664));
-    Armceptor.jumpout(this.base.add(0x30dd58), this.base.add(0x30ebbc));
+    Armceptor.jumpout(this.base.add(0x30dd58), this.base.add(0x30ebbc)); // LoginMessage::encode
     Armceptor.jumpout(this.base.add(0x7b78c),  this.base.add(0x7c9c0));
     Armceptor.jumpout(this.base.add(0x4723c0), this.base.add(0x4735c0));
-    Interceptor.attach(this.base.add(0x4e1494), function() {
+    Interceptor.attach(this.base.add(0x4e1494), function() { // Connection::connect
       this.context.r1 = 0xe4;
       this.context.r2 = 0xe4;
     });
