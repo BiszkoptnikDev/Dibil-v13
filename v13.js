@@ -88,7 +88,7 @@ const EncryptionPatcher = {
       }
     });
 
-    Interceptor.attach(this.base.add(0x488dc4), function() {
+    Interceptor.attach(this.base.add(0x488dc4), function() { // Messaging::encryptAndWrite
       this.context.r0 = 0x2774;
     });
 
@@ -100,7 +100,7 @@ const EncryptionPatcher = {
       return 0;
     }, "int", []));
 
-    Interceptor.replace(this.base.add(0x15a290), new NativeCallback(function(a, b, c, d) {
+    Interceptor.replace(this.base.add(0x15a290), new NativeCallback(function(a, b, c, d) { // PepperEncrypter::decrypt
       if (d > 0)
         c.writeByteArray(b.readByteArray(d));
       return 0;
